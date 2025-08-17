@@ -1,0 +1,15 @@
+---
+- name: Sentry setup
+  hosts: all
+  become: true
+  become_user: deploy
+  tasks:
+    - name: Install Git
+      apt:
+        name: git
+        state: present
+        update_cache: yes
+    - name: Clone Remote Git Repository
+      git:
+        repo: https://github.com/getsentry/self-hosted.git
+        dest: /home/deploy/sentry
